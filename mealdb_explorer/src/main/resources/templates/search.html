@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Results</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+
+	<h2>Search Results for "<span th:text="${searchTerm}"></span>"</h2>
+	
+	<!-- NO RESULTS MESSAGE -->
+	<div th:if="${#lists.isEmpty(meals)}">
+	    <p>No meals found 😕</p>
+	</div>
+	
+	<!-- RESULTS GRID -->
+	<div class="meal-grid" th:if="${!#lists.isEmpty(meals)}">
+	    <div class="card meal-card" th:each="meal : ${meals}">
+	        <img th:src="${meal.strMealThumb}">
+	        <h3 th:text="${meal.strMeal}"></h3>
+	        <a th:href="@{/meal/{id}(id=${meal.idMeal})}">
+	            View Details
+	        </a>
+	    </div>
+	</div>
+
+
+    <br>
+    <a href="/">⬅ Back to Home</a>
+
+</div>
+
+</body>
+</html>

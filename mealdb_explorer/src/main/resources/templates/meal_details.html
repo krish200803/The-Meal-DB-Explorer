@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${meal.strMeal}"></title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container card meal-details">
+
+    <h1 th:text="${meal.strMeal}"></h1>
+
+    <img th:src="${meal.strMealThumb}" width="400">
+
+    <p><b>Category:</b> <span th:text="${meal.strCategory}"></span></p>
+    <p><b>Area:</b> <span th:text="${meal.strArea}"></span></p>
+
+    <h3>Ingredients</h3>
+    <ul>
+        <li th:each="i : ${meal.ingredients}">
+            <span th:text="${i.ingredient}"></span>
+            -
+            <span th:text="${i.measure}"></span>
+        </li>
+    </ul>
+
+    <h3>Instructions</h3>
+    <p th:text="${meal.strInstructions}"></p>
+
+    <a th:href="${meal.strYoutube}" target="_blank">
+         Watch on YouTube
+    </a>
+
+    <br><br>
+    <a href="/"> Back to Home</a>
+
+</div>
+
+</body>
+</html>

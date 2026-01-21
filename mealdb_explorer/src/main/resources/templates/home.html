@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TheMeal DB </title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>The MealDB Recipes </h1>
+
+    <!-- Search -->
+    <form action="/search" method="get">
+        <input type="text" name="name" placeholder="Search meal by name" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <hr>
+
+    <h3>Browse by Category</h3>
+
+    <p th:if="${#lists.isEmpty(categories)}" class="empty-msg">
+        No categories available 
+    </p>
+
+    <ul th:if="${!#lists.isEmpty(categories)}">
+        <li th:each="c : ${categories}">
+            <a th:href="@{/category(name=${c.strCategory})}"
+               th:text="${c.strCategory}">
+            </a>
+        </li>
+    </ul>
+
+    <h3>Browse by Area</h3>
+
+    <p th:if="${#lists.isEmpty(areas)}" class="empty-msg">
+        No areas available 
+    </p>
+
+    <ul th:if="${!#lists.isEmpty(areas)}">
+        <li th:each="a : ${areas}">
+            <a th:href="@{/area(name=${a.strArea})}"
+               th:text="${a.strArea}">
+            </a>
+        </li>
+    </ul>
+
+    <hr>
+
+    <a href="/random" class="back-link"> Surprise Me (Random Meal)</a>
+
+</div>
+
+</body>
+</html>
